@@ -19,7 +19,7 @@ print(next(s))
 
 # iterator object using list
 
-mylist = ["hemil","umang","kesar","aman"]
+mylist = ["hemil","sanju","kesar","aman"]
 s = iter(mylist)
 print(s)
 print(next(s))
