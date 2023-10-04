@@ -6,9 +6,8 @@
 a = input("Please Enter Your FullName : ")
 x = 0
 
-for i in a:
-    if i >= "0" and i <= "9":
-        x = 1
+if a.isalnum:
+    x = 1
 
 if x == 1:
     print("please print only string")
