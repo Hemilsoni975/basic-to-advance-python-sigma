@@ -43,6 +43,11 @@ for key, value in wow.items():
 wow.update(wow1)  # it helps to update the dictionary by adding new key-values
 print(wow)
 
+wow2 = wow1.copy()  # helps to copy key-values of dictionary
+print(wow2)
+del wow2[904]
+print(wow2)
+
 wow.pop(808)  # helps to remove specific pair
 print(wow)
 
