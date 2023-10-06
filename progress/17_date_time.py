@@ -1,43 +1,43 @@
 import time
 import datetime
-#
-# k= 0
-# wow = time.time()
-#
-# for x in range(45):
-#     print("hey hemil!!")
-# print("time taken : ", time.time() - wow)
-# wow1 = time.time()
-#
-# while(k<2):
-#     print("hey hemil!!")
-#     time.sleep(2)  # works as per seconds user provide
-#     k = k+1
-# print("hey hemil!!", time.time() - wow1)
-#
-# local_time = time.asctime(time.localtime(time.time()))  # to see present time and date
-# print("present time : ", local_time)
-#
-# def for_loop():
-#     for x in range(5000):
-#         print("for loop :", x)
-#
-#
-# def while_loop():
-#     i = 0
-#     while (i<5000):
-#         i = i+1
-#         print("while loop : ", i)
-#
-# wow = time.time()
-# for_loop()
-# t1 = (time.time() - wow)
-# print("time taken by for_loop : ", t1)
-#
-# wow1 = time.time()
-# while_loop()
-# t2 = (time.time() - wow1)
-# print("time taken by while_loop : ", t2)
+
+k= 0
+wow = time.time()
+
+for x in range(45):
+    print("hey hemil!!")
+print("time taken : ", time.time() - wow)
+wow1 = time.time()
+
+while(k<2):
+    print("hey hemil!!")
+    time.sleep(2)  # works as per seconds user provide
+    k = k+1
+print("hey hemil!!", time.time() - wow1)
+
+local_time = time.asctime(time.localtime(time.time()))  # to see present time and date
+print("present time : ", local_time)
+
+def for_loop():
+    for x in range(5000):
+        print("for loop :", x)
+
+
+def while_loop():
+    i = 0
+    while (i<5000):
+        i = i+1
+        print("while loop : ", i)
+
+wow = time.time()
+for_loop()
+t1 = (time.time() - wow)
+print("time taken by for_loop : ", t1)
+
+wow1 = time.time()
+while_loop()
+t2 = (time.time() - wow1)
+print("time taken by while_loop : ", t2)
 
 print("----------DATE-TIME----------")
 print()
