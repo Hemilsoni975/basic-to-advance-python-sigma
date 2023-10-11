@@ -30,17 +30,21 @@ user = int(input("how many element you want to add : "))
 myList = []
 
 for i in range(0, user):
-    a = int(input("Enter input : "))
-    myList.append(a)
-print(myList)
+    ele = int(input("Enter input : "))
+    myList.append(ele)
 
-flag = 0
+k = 0
+for i in myList:
+    c = 0
+    for j in range(2, i):
+        if i % j == 0:
+            c = 1
 
-for items in myList:
-    if myList[a] % items == 0:
-        flag = 1
-if flag == 0:
+
+    if c == 0:
+        k = k + 1
+
+if k == len(myList):
     print("True")
 else:
     print("False")
-
