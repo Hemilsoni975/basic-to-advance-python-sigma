@@ -1,15 +1,23 @@
 # Dictionary Comprehension - Word Length [Use File Handling]
 
-with open("test3.txt", "w") as f:
-    w = f.writelines(["baba black ship\n", "hello\n","heyyy budddy"])
 
-with open("test3.txt", "r") as f:
-    r = f.read().split()
+def write_mode(sf):
+    def mode():
+        z = sf()
+        with open("test3.txt", "w") as x:
+            return x.writelines(["baba black ship\n", "hello\n", "heyyy budddy"])
+    return mode
 
-for i in r:
-    l = {i: len(i)}
-    print(l)
+@write_mode
+def read_mode():
+    with open("test3.txt", "r") as f:
+        r = f.read().split()
 
+    for i in r:
+        l = {i: len(i)}
+        print(l)
+
+read_mode()
 
 
 
