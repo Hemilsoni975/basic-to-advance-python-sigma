@@ -48,3 +48,12 @@ print(l2)
 l = [(x,y) for x in l1 for y in l2 if x != y]
 print(l)
 
+# what are set ?
+# --> sets are unordered
+for x in l:
+    if x[0] > x[1]:
+        t = x[0]
+        x[0] = x[1]
+        x[1] = t
+    print(x,end="")
+
