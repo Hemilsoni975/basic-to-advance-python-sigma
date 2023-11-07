@@ -1,0 +1,688 @@
+==> what is SQL?
+
+--> SQL (structured query language) is a programing language used to interact with database.
+
+==> Common application of SQL:-
+
+--> CREATE()
+--> SELECT()
+--> UPDATE()
+--> DELETE()
+
+<#===================================================OPERATORS=====================================================#>
+
+
+--> OPERATORS OF SQL USED FOR PUTTING CONDITIONS : 
+1)	ARITHMETIC OPERATORS : NUMERIC VALUES. EXAMPLE : ADDDITION (+), SUBTRACTION(-), MULTIPLICATION (*), DIVISION (/), MODULUS (%)
+2)	COMPARISION OPERATORS : COMPARE TWO DIFFERENT DATA OF SQL LIKE GREATER THAN, SMALLER THAN, NOT EQUAL, EQUAL,ETC
+3)	LOGICAL OPERATORS : PERFORM BOOLEAN OPERATIONS. EX : ALL, IN, BETWEEN, LIKE, AND, OR, NOT, ANY.
+4)	BITWISE OPERATORS : PERFORM BIT OPERATIONS. EX: BITWISE AND(&) AND BITWISE OR(|)
+
+--> EXAMPLE FOR OPERATORS:
+
+--	AND
+
+-	select s_name from student
+	where s_grade = 'A' and s_roll > 1;
+
+--	OR
+
+-	select s_name from student
+	where s_grade = 'A' or s_grade = 'C';
+
+-- 	NOT
+
+- 	select s_name from student
+	where not s_grade = 'B';
+
+-- 	NOT IN 
+
+- 	select * from student 
+	where s_city not in ('SURAT','BARODA');
+
+--	NOT LIKE
+
+-	select * from student 
+	where s_name not like 'RIYA';
+
+-- 	NOT BETWEEN
+
+-	select * from student 
+	where s_roll not between 2 and 4;
+
+--	NOT GREATER THAN
+
+-	select * from student 
+	where not s_roll > 5;
+
+--	NOT LESS THAN
+
+-	select * from student 
+	where not s_roll < 5;
+
+* SQL NULL VALUES : 
+
+--> HELPS TO CHECK THE COLUMN IS NULL OR NOT.
+
+--  IS NULL OPERATOR : 
+
+-   select * from student 
+    where s_city is null;
+
+--  IS NOT NULL OPERATOR : 
+
+-   select * from student 
+    where s_city is not null;
+
+
+<#================================================OPERATORS_FINISH=================================================#>
+
+
+<#==================================================SQL_COMMANDS===================================================#>
+
+==> SQL commands :-
+
+1) DDL (Data Definition Language): create, alter, and drop
+2) DML (Data Manipulation Language): select, update, and delete
+3) DCL (Data Control Language): grant, and revoke
+
+==> What is database?
+
+--> Database is system that allows user to store and organise the data.
+
+==> EXAMPLES :
+
+***	CREATING A DATABASE :
+
+-->	HELPS TO CREATE A DATABSE
+
+- 	create database testdb;
+
+
+***	CREATING A TABLE : 
+
+--> HELPS TO CREATE A TABLE 
+
+- 	create table customer
+	(
+		c_id int primary key,
+		c_name varchar(50) not null,
+		c_add varchar(150), 
+		c_contact int8 not null,
+		c_salary int, 
+	);
+
+
+***	INSERT VALUE IN TABLE : 
+
+-->	HELPS TO INSERT VALUES IN TABLE
+
+- 	insert into customer
+	(c_id, c_name, c_add, c_contact, c_salary)
+	VALUES
+	(101, 'HEMIL','AHMEDABAD',987 ,50000),
+	(102, 'UMANG','SURAT',673 ,40000),
+	(103, 'TIRTH','BARODA',123 ,30000),
+	(104, 'MIT','AHMEDABAD',342 ,60000);
+
+***	SELECT STATEMENT : 
+
+--> HELPS TO SHOW DATA IN TABLE
+
+- 	select * from customer
+
+--> HELPS TO SHOW SELECTED DATA FROM DATABASE
+
+-	select column_name from table_name;
+
+--> HELPS TO SHOW UNIQUE VALUE AVAILABLE IN TABLE
+
+- 	select distinct column_name from table_name;
+
+
+*** 	UPDATING A VALUE OF TABLE
+
+--> HELPS TO UPDATE OR CHANGE VALUES IN TABLE
+
+-	update customer
+	set c_name = 'AMAN', c_add = 'NIKOL'
+	where c_id = 103;
+	
+
+***	DELETING A VALUE FROM TABLE
+
+-->	HELPS TO DELETE VALUES FROM TABLE
+
+-	delete from customer 
+	where c_id = 105;
+
+	
+***	ALTER TABLE : 
+
+--> HELPS TO ADD COLUMN IN TABLE
+
+-	alter table table_name
+	add column column_name;
+	
+-->	HELPS TO DROP COLUMN IN TABLE
+
+-	alter table table_name
+	drop column column_name;
+	
+
+--> HELPS TO MODIFY COLUMN IN TABLE
+
+-	alter table customer
+	alter column c_contact type int8;
+	
+
+***	TRUNCATE TABLE : 
+
+--> HELPS TO DELETE DATAS IN TABLE
+
+-	truncate table customer;
+
+
+***	DROP TABLE :
+
+--> HELPS TO DELETE WHOLE TABLE FROM DATABASE
+ 
+-	drop table customer
+
+
+***	GRANT COMMAND :
+
+-->	HELPS TO PROVIDE ANY KIND OF ACCESS TO ANY USER.
+
+***	REVOKE COMMAND :
+
+--> HELPS TO TAKE BACK THE ACCESS FROM USERS.
+
+<#==============================================SQL_COMMANDS_FINISHED==============================================#>
+
+
+<#===================================================SQL_CLAUSES===================================================#>
+
+***	WHERE CLAUSE :
+
+--> HELPS FOR SATISFYING SPECIFIC CONDITIONS.WHERE CLAUSE PLACE CONDITIONS
+	ON SELECETD COLUMN
+
+-	select s_name from student
+	where s_grade = 'A';
+	
+	
+***	ORDER BY CLAUSE :
+
+--> HELPS TO SORT RESULT-SET IN ASCENDING(ASC) OR DESCENDING ORDER(DESC).
+
+-	select * from student
+	order by s_name desc
+
+
+***	LIMIT CLAUSE : 
+
+--> HELPS TO SET UPPER LIMIT ON THE NUMBER OF TUPLES RETURNED BY SQL.
+
+-	SELECT * FROM student
+	limit 5
+
+
+***	GROUP BY CLAUSE : 
+
+-->	HELPS TO GROUPS ROWS THAT HAVE SAME VALUES INTO SUMMARY ROWS.
+	IT IS OFTEN FOLLOWED BY AGGREGATE FUNCTIONS TO GROUP THE RESULT SET BY ONE OR MORE COLUMN
+
+-	select p_mode, sum(p_amt) as total 
+	from payment
+	group by p_mode;
+
+
+***	HAVING CLAUSE : 
+
+--> 	USED TO APPLY FILTER ON THE RESULT OF GROUP BY BASED ON SPECIFIC CONDITION.
+	HAVING CLAUSE PLACES CONDITIONS ON GROUPS CREATED BY GROUP BY CLAUSE.
+
+- 	select p_mode, count(p_amt) as total 
+		from payment
+	group by p_mode
+	having count(p_amt) >= 2 and count(p_amt) < 4
+
+<#==============================================SQL_CLAUSES_FINISHED===============================================#>
+
+
+<#===============================================IMPORTING_CSV_FILE================================================#>
+
+***  IMPORT CSV FILE IN DATABASE : 
+
+--> COPY HELPS TO IMPORT CSV FILE IN THE SPECIFIC DATABSE WITH ALREADY INSERTED DATA
+
+-	copy employee(e_id, first_name, last_name, email, address_id)
+	from 'C:\sigma_solve\task_list\progress\06_database\emp.csv'
+	delimiter ','
+	csv header;
+	
+<#=================================================IMPORT_FINISHED=================================================#>
+
+
+<#=====================================================FUNCTIONS===================================================#>
+
+==> WHAT IS FUNCTIONS  IN SQL?
+
+--> FUNCTIONS ARE KEYWORDS OR OBJECT THAT ARE ALREADY FEED IN SQL.A FUNCTIONS ACCEPT INPUT
+    PARAMETERS , PERFORM ACTIONS, AND THEN RETURN THE RESULT.
+
+--> TYPES OF FUNCTIONS : 
+
+1)  BUILT-IN FUNCTION : THEY ARE IN-BUILT FUNCTIONS LIKE RAND(), ROUND(), UPPER(), LOWER(), COUNT(), SUM().
+
+2)  USER DEFINED FUNCTION : USER CAN MAKE FUNCTIONS OF ITSELF AND IN FUTURE HE CAN ACCESS THAT FUNCTION ANYWHERE.
+ 
+
+<#==================================================STRING_FUNCTION================================================#>
+
+A) STRING FUNCTIONS : IT USED TO PERFORM OPERATIONS ON INPUT STRINGS AND RETURNS OUTPUT STRING.  
+
+-   MOSTLY USED STRING FUNCTIONS : 
+
+1)  UPPER() : CONVERTS STRING TO UPPERCASE. 
+
+-   select upper(s_name) from student
+
+2)  LOWER() : CONVERTS STRING TO LOWERCASE.
+
+-   select lower(s_name) from student
+
+3)  LENGTH() : GIVES LENGTH OF THE TEXTFIELD.
+
+-   select length(s_name),s_name from student
+
+4)  SUBSTRING() : EXTRACTS SUBSTRING FROM STRING.
+
+-   select substring(s_name,1,2),s_name from student
+
+5)  CONCAT() : ADDS TWO OR MORE STRINGS.
+
+-   select CONCAT(s_name,s_city) from student
+
+6)  REPLACE() 
+
+-   select replace(s_name,'HETVI', 'RIYA'), s_name from student
+
+7)  TRIM()
+
+-   select trim(s_name,'HETVI', '  	RIYA'), s_name from student   
+
+8) CHARINDEX:
+ 
+8)  NOW() : RETURNS CURRENT DATA AND TIME.
+
+9)  FORMAT() : USED TO SET FORMAT OF FIELD.
+
+(FOR ALL FUNCTIONS REFER STRING FUNCTIONS AND OPERATORS FROM GOOGLE)
+
+<#==============================================STRING_FUNCTION_FINISHED===========================================#>
+
+
+<#================================================AGGREGATE_FUNCTION===============================================#>
+
+B)  AGGREGATE FUNCTION : 
+
+- 	PERFORMS CALCULATION BETWEEN MULTIPLE VALUES AND RETURN SINGLE VALUE.
+	AGGREGATE FUNCTIONS ARE MOSTLY USED WITH GROUP BY OR SELECT STATEMENT.
+
+- 	TYPES OF AGGREGATE FUNCTIONS ARE : 
+
+1) 	COUNT() : RETURNS NUMBER OF VALUES
+
+-	select count(*) from payment;
+
+2)	SUM() : RETURNS SUM OF ALL VALUES
+
+-	select sum(p_amt) from payment;
+
+3)  	AVG() : RETURNS AVERAGE VALUE
+
+-	select avg(p_amt) from payment;
+
+4)	MAX() : RETURNS MAXIMUM VALUE
+
+-	select max(p_amt) from payment;
+
+5)	MIN() : RETURNS MINIMUM VALUE
+
+-	select min(p_amt) from payment;
+
+6)	ROUND() : RETURNS ROUND-UP VALUE OF DECIMAL VALUES
+
+-	select round(avg (p_amt),2) from payment;
+
+<#===========================================AGGREGATE_FUNCTION_FINISHED===========================================#>
+
+<#===================================================TIME_STAMP====================================================#>
+
+==> 	TIMESTAMP
+
+-->	 DATATYPE IS USED FOR VALUES THAT CONTAIN BOTH TIME AND DATE PARTS.
+
+1)	TIME() : CONTAINS ONLY TIME , FORMAT HH:MM:SUBSTRING
+2)	DATE() : CONTAINS ONLY DATE , FORMAT YYYY-MM-DD
+3) 	YEAR() : CONTAINS ONLY YEAR , FORMAT YYYY OR YY
+4)	TIMESTAMP() : CONTAINS DATE AND TIME , FORMAT YYYY-MM-DD AND HH:MM:SS
+5)	TIMESTAMPTZ() : CONTAINS DATE, TIME AND TIME ZONE		
+
+-->	TIMESTAMP FUNCTIONS AND OPERATORS : 
+
+1)	SHOW TIMEZONE
+
+- 	OUTPUT : "Asia/Calcutta"
+
+2) 	SELECT NOW()
+
+- 	OUTPUT : "2023-11-02 15:55:32.33148+05:30"
+
+3)	SELECT TIMEOFDAY()
+
+-	OUTPUT : "Thu Nov 02 15:53:56.015627 2023 IST"
+
+4)	SELECT CURRENT_TIME
+
+-	OUTPUT : "15:54:26.939539+05:30"
+
+5)	SELECT CURRENT_DATE
+
+- OUTPUT : "2023-11-02"
+
+<#===============================================TIME_STAMP_FINISHED===============================================#>
+
+
+<#================================================EXTRACT_FUNCTION=================================================#>
+
+==>	EXTRACT FUNCTION
+
+-->	THE EXTRACT() FUNCTION EXTRACTS A PART FROM A GIVEN DATE VALUE.
+
+1) YEAR :
+
+-	SELECT extract(year from p_date) as p_mon , p_date
+	FROM payment
+
+2) QUARTER : 
+
+- 	SELECT extract(quarter from p_date) as p_mon , p_date
+	FROM payment
+
+
+3) MONTH : 
+
+- 	SELECT extract(month from p_date) as p_mon , p_date
+	FROM payment
+
+4) WEEK :
+
+-	SELECT extract(week from p_date) as p_mon , p_date
+	FROM payment
+
+
+5) DAY : 
+
+-	SELECT extract(day from p_date) as p_mon , p_date
+	FROM payment
+
+
+6) HOUR : 
+
+- 
+
+7) MINUTE :
+
+-
+
+8) DOW : 
+
+-	SELECT extract(dow from p_date) as p_mon , p_date
+	FROM payment
+
+
+9) DOY : 
+
+-	SELECT extract(doy from p_date) as p_mon , p_date
+	FROM payment
+
+
+<#===========================================EXTRACT_FUNCTION_FINISHED=============================================#>
+
+<#=======================================================JOINS=====================================================#>
+
+==> 	SQL JOIN :
+
+--> 	JOIN MEANS COMBINE SOMETHING.
+
+-->	A JOIN CLAUSE IS USED TO COMBINE DATA FROM TWO OR MORE TABLES, BASED ON A RELATED COLUMN BETWEEN THEM
+
+-->	TYPES OF JOINS :
+
+1)	INNER JOIN :	RETURNS RECORD THAT HAVE MATCHING VALUES IN BOTH TABLES.
+
+-	select c.c_fname, p.p_amt, p.p_mode
+	from customer as c  
+	inner join payment as p
+	on c.c_id = p.c_id;
+
+	here c and p is alias in sql.
+
+
+2) 	LEFT OUTER JOIN : RETURNS ALL THE RECORD OF LEFT TABLE AND MATCHED RECORDS FROM RIGHT TABLE. 
+
+- 	select * 
+	from customer as c 
+	left join payment as p
+	on c.c_id = p.c_id;
+
+
+3)	RIGHT OUTER JOIN : RETURNS ALL THE RECORD OF RIGHT TABLE AND MATCHED RECORDS FROM LEFT TABLE.
+
+-	select * 
+	from customer as c 
+	right join payment as p
+	on c.c_id = p.c_id;
+
+4)	FULL JOIN : RETURNS ALL RECORDS WHEN THERE IS A MATCH IN EITHER LEFT OR RIGHT TABLE.
+
+-	select * 
+	from customer as c 
+	full outer join payment as p
+	on c.c_id = p.c_id;
+
+<#===================================================JOINS ENDED===================================================#>
+
+<#===================================================SELF-JOIN=====================================================#>
+
+==> SELF JOINS :
+
+-->  SELF JOIN MEANS JOINING THE TABLE ITSELF.
+
+--> SELF JOINS ARE POWERFULL FOR COMPARING VALUES IN COLUMN OF ROWS WITH SAME TABLE.
+
+-   select e1.ename as employee, e2.ename as manager
+    from emp1 as e1
+    join emp1 as e2
+    on e2.eid = e1.manid
+
+<#===================================================SELF-JOIN ENDED=====================================================#>
+
+<#===============================================UNION & UNIONALL==================================================#>
+
+==> UNION :
+
+--> THE SQL UNION CLAUSE OPERATOR IS USED TO COMBINE/CONCATENATE THE RESULTS OF TWO OR MORE SELECTED STATEMENT WITHOUT
+    DUPLICATING ROWS AND KEEPS RECORD UNIQUE.
+
+--> TO USE UNION CLAUSE THERE ARE SOME CONDITIONS LIKE :
+
+-   SAME NUMBER OF COLUMN SELECTED AND EXPRESSION
+
+-   SAME DATA TYPE AND IN SAME ORDER.
+
+-   select cname from CUST1
+    union
+    select cname from CUST2
+
+==> UNION ALL :
+
+--> UNION ALL IS ALSO SIMILAR TO UNION BUT THE MAIN DIFFERENCE IS THAT UNION ALL GENERATES ALL DUPLICATE VALUES FROM
+    TWO OR MORE TABLES.
+
+-   select cname from CUST1
+    union all
+    select cname from CUST2
+
+<#===============================================UNION & UNIONALL ENDED==============================================#>
+
+<#==================================================SUB QUERY=====================================================#>
+
+==> SUB QUERY:
+
+--> A SUB QUERY OR INNER QUERY OR NESTED QUERY ALLOWS US TO CREATE A COMPLEX QUERY ON THE OUTPUT OF ANOTHER QUERY.
+
+--> IT SELECTS TWO SELECT STATEMENTS.
+
+#   using comparision operator
+-   select avg(p_amt) from payment
+    select * from payment
+    where p_amt < (select avg(p_amt) from payment)
+
+#   using logical operator
+
+-   select c_id, p_amt, p_mode from payment  # query
+    where c_id not in (select c_id from customer)  # sub query
+
+#   using exists function
+
+-   select c_fname , c_lname
+    from customer c
+    where exists (select c_id, p_amt
+                 from payment p
+                 where p.c_id = c.c_id
+                 and p_amt > 4500)
+
+<#================================================SUB QUERY ENDED==================================================#>
+
+<#================================================WINDOW FUNCION===================================================#>
+
+==> WINDOW FUNCTION :
+
+--> WINDOW FUNCTION APPLIES AGGREGATE, RANKING, AND ANALYTIC FUNCTIONS OVER A PARTICULAR WINDOW (SET OF ROW).
+
+--> OVER CLAUSE IS USED WITH WINDOW FUNCTIONS TO DEFINE THAT WINDOW.
+
+->  `PARTITION BY` DIVIDES ROWS INTO PARTITIONS SO WE CAN SPECIFY WHICH ROW TO USE TO COMPUTE WINDOW FUNCTION.
+
+->  `ODER BY` IS USED SO THAT WE CAN ORDER THE ROWS WITHIN EACH PARTITION.
+
+->  `ROWS` CAN BE USED IF WE WANT TO FURTHER LIMIT THE ROWS WITHIN OUR PARTITION.
+
+--> EXPRESSION IS THE NAME OF THE COLUMN THAT WE WANT WINDOW FUNCTION OPERATED ON.
+
+--> TYPES OF WINDOW FUNCTIONS :
+
+1)  AGGREGATE : SUM,AVG,MIN,MAX,COUNT.
+
+-   select h_id, h_name,
+    sum(h_id) over(partition by h_name order by h_id) as "total",
+    avg(h_id) over(partition by h_name order by h_id) as "avg",
+    count(h_id) over(partition by h_name order by h_id) as "count",
+    max(h_id) over(partition by h_name order by h_id) as "max",
+    min(h_id) over(partition by h_name order by h_id) as "min"
+    from hemil;
+
+-   select h_id, h_name,
+    sum(h_id) over(order by h_id rows between unbounded preceding and unbounded following) as "total",
+    avg(h_id) over(order by h_id rows between unbounded preceding and unbounded following) as "avg",
+    count(h_id) over(order by h_id rows between unbounded preceding and unbounded following) as "count",
+    max(h_id) over(order by h_id rows between unbounded preceding and unbounded following) as "max",
+    min(h_id) over(order by h_id rows between unbounded preceding and unbounded following) as "min"
+    from hemil;
+
+2)  RANKING : ROW_NUMBER, RANK, DENSE_RANK, PERCENT_RANK.
+
+-   select h_id, h_name,
+    row_number() over (order by h_name) as "row_number",
+    rank() over (order by h_name) as "rank",
+    dense_rank() over (order by h_name) as "dense_rank",
+    percent_rank() over (order by h_name) as "percentage_rank"
+    from hemil;
+
+3)  VALUE/ANALYTIC : LEAD, LAG, FIRST_VALUE, LAST_VALUE.
+
+-   select h_id, h_name,
+    first_value(h_id) over(order by h_id) as "First_value",
+    last_value(h_id) over(order by h_id) as "last_value",
+    lead(h_id) over(order by h_id) as "lead",
+    lead(h_id,2) over(order by h_id) as "lead_by_2",
+    lag(h_id) over(order by h_id) as "lag",
+    lag(h_id,2) over(order by h_id) as "lag_by_2"
+    from hemil;
+
+<#===========================================WINDOW FUNCTION ENDED=================================================#>
+
+
+<#================================================CASE EXPRESSION==================================================#>
+
+==> CASE EXPRESSION :
+
+--> A CASE EXPRESSION GOES THROUGH CONDITIONS AND RETURNS A VALUE WHEN THE FISRT CONDITION IS SATISFIED. IF NO
+    CONDITIONS ARE TRUE, IT RETURNS VALUE IN THE ELSE CLAUSE.
+
+--> IF THERE IS NO ELSE PART AND NO CONDITIONS ARE TRUE, IT RETURNS NULL.
+
+-   select cid,p_amt,
+    case
+        when p_amt > 3000 then 'Expensive product'
+        when p_amt = 3000 then 'moderate product'
+        else 'inexpensive product'
+    end as productstatus
+    from payment
+
+-   select cid,
+    case p_amt
+        when 3000 then 'plus customer'
+        when 5000 then 'prime customer'
+        else 'regular customer'
+    end as productstatus
+    from payment
+
+<#===========================================END OF CASE EXPRESSION===============================================#>
+
+<#===========================================COMMON TABLE EXPRESSION==============================================#>
+
+--> A COMMON TABLE EXPRESSION OR CTE IS A TEMPORARY NAMED RESULT SET CREATED FROM A SIMPLE SELECT STATEMENT THAT CAN
+    CAN BE USED IN A SUBSEQUENT SELECT STATEMENT.
+
+--> WE CAN DEFINE CTE USING WITH CLAUSE DIRECTLY BEFORE SELECT, INSERT, UPDATE, DELETE OR MERGE STATEMENT.
+
+--> THE WITH CLAUSE CAN INCLUDE ONE OR MORE CTEs SEPERATED BY COMMASS.
+
+-   with my_cte as (
+	select *,avg(p_amt) over(order by p.cid) as "Average_price",
+	count(add_id) over(order by c.c_id) as "count"
+	from payment as p
+	inner join customer as c
+	on p.cid = c.c_id
+    )
+    select c_fname,c_lname, p_amt
+    from my_cte
+
+-   with my_cte as
+    (
+        select p_mode , max(p_amt) as highest_amt ,sum(p_amt) as total_amt
+        from payment
+        group by p_mode
+    )
+    select payment.*,my.highest_amt, my.total_amt
+    from payment
+    join my_cte as my
+    on payment.p_mode = my.p_mode
+    order by payment.p_mode
+
+<#=========================================END COMMON TABLE EXPRESSION=============================================#>
